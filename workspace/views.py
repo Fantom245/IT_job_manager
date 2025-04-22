@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Task, Worker
@@ -27,3 +28,10 @@ class TaskListView(generic.ListView):
 class TaskDetailView(generic.DetailView):
     model = Task
     template_name = "workspace/task_detail.html"
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    template_name = "workspace/task_create.html"
+    success_url = reverse_lazy("workspace:task-list")
