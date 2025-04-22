@@ -10,16 +10,15 @@
         <ul>
             {% for task in task_list %}
                 <li>
-                    {{ task.id }} <br>
-                    {{ task.name }} <br>
-                    {{ task.description }} <br>
-                    {{ task.deadline }} <br>
-                    {{ task.is_completed }} <br>
-                    {{ task.priority }} <br>
-                    {{ task.task_type }} <br>
-                    {% for user in task.assignees.all %}
-                        {{ user.username }}
-                    {% endfor %}
+                    <h1><a href="{% url 'workspace:task-detail' pk=task.id %}">{{ task.name }}</a></h1>
+                    <p>Deadline: {{ task.deadline }}</p>
+                    {% if task.is_completed %}
+                        <p>Task is completed</p>
+                    {% else %}
+                        <p>Task not completed</p>
+                    {% endif %}
+                    <p>Priority: {{ task.priority }}</p>
+                    <p>Task type: {{ task.task_type }}</p>
                 </li>
             {% endfor %}
         </ul>
