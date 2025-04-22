@@ -33,5 +33,11 @@ class TaskDetailView(generic.DetailView):
 class TaskCreateView(generic.CreateView):
     model = Task
     fields = "__all__"
-    template_name = "workspace/task_create.html"
+    template_name = "workspace/task_form.html"
+    success_url = reverse_lazy("workspace:task-list")
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = "__all__"
     success_url = reverse_lazy("workspace:task-list")
