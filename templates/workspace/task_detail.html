@@ -2,7 +2,10 @@
 
 
 {% block content %}
-    <h1>{{ task.name }}</h1>
+    <h1>
+        {{ task.name }}
+        <a href="{% url 'workspace:task-update' pk=task.id %}">Update</a>
+    </h1>
     <p>{{ task.description }}</p>
     <p>Deadline: {{ task.deadline }}</p>
     {% if task.is_completed %}
