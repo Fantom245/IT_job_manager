@@ -22,3 +22,8 @@ class TaskListView(generic.ListView):
     model = Task
     template_name = "workspace/task_list.html"
     context_object_name = "task_list"
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task
+    template_name = "workspace/task_detail.html"
