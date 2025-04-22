@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 from .models import Task, Worker
 
@@ -15,3 +16,9 @@ def index(request):
     }
 
     return render(request, "workspace/index.html", context=context)
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    template_name = "workspace/task_list.html"
+    context_object_name = "task_list"
