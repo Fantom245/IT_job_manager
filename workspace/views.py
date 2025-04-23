@@ -53,3 +53,10 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "workspace/worker_list.html"
     context_object_name = "worker_list"
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    fields = ("username", "password", "first_name", "last_name", "email", "position")
+    template_name = "workspace/worker_form.html"
+    success_url = reverse_lazy("workspace:worker-list")
