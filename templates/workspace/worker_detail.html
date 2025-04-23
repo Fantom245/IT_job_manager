@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>{{ worker.username }}</h1>
+    <p>{{ worker.first_name }} {{ worker.last_name }}</p>
+    <p>Email: {{ worker.email }}</p>
+    <p>Position: {{ worker.position }}</p>
+{% endblock %}
