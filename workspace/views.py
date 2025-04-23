@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Task, Worker
 
 
-# @login_required
+@login_required
 def index(request):
     tasks = Task.objects.all()
     workers = Worker.objects.all()
@@ -19,30 +20,30 @@ def index(request):
     return render(request, "workspace/index.html", context=context)
 
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "workspace/task_list.html"
     context_object_name = "task_list"
 
 
-class TaskDetailView(generic.DetailView):
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     template_name = "workspace/task_detail.html"
 
 
-class TaskCreateView(generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
     template_name = "workspace/task_form.html"
     success_url = reverse_lazy("workspace:task-list")
 
 
-class TaskUpdateView(generic.UpdateView):
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("workspace:task-list")
 
 
-class TaskDeleteView(generic.DeleteView):
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("workspace:task-list")
