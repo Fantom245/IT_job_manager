@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Task List</title>
+{% endblock %}
+
+{% block content %}
+    <h1>
+        Worker List
+    </h1>
+    {% if worker_list %}
+        <ul>
+            {% for worker in worker_list %}
+                <li>
+                    <h1>{{ worker.username }}</h1>
+                    <p>{{ worker.first_name }} {{ worker.last_name }}</p>
+                    <p>Email: {{ worker.email }}</p>
+                    <p>Position: {{ worker.position }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+
+    {% endif %}
+{% endblock %}
