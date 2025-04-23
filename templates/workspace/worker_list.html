@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Task List</title>
+    <title>Worker List</title>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
         <ul>
             {% for worker in worker_list %}
                 <li>
-                    <h1>{{ worker.username }}</h1>
+                    <h1><a href="{% url 'workspace:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h1>
                     <p>{{ worker.first_name }} {{ worker.last_name }}</p>
                     <p>Email: {{ worker.email }}</p>
                     <p>Position: {{ worker.position }}</p>
