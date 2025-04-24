@@ -24,6 +24,10 @@
                     {% endif %}
                     <p>Priority: {{ task.priority }}</p>
                     <p>Task type: {{ task.task_type }}</p>
+
+                    {% for worker in task.assignees.all %}
+                        <p>{{ worker.username }}</p>
+                    {% endfor %}
                 </li>
             {% endfor %}
         </ul>
