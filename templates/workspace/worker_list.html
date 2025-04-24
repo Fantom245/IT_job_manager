@@ -15,14 +15,14 @@
         <ul>
             {% for worker in worker_list %}
                 <li>
-                    <h1><a href="{% url 'workspace:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h1>
+                    <h2><a href="{% url 'workspace:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h2>
                     <p>{{ worker.first_name }} {{ worker.last_name }}</p>
                     <p>Email: {{ worker.email }}</p>
                     <p>Position: {{ worker.position }}</p>
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
+{% else %}
 
     {% endif %}
 {% endblock %}
