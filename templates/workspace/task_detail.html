@@ -17,7 +17,7 @@
     <p>Priority: {{ task.priority }}</p>
     <p>Task type: {{ task.task_type }}</p>
     {% for user in task.assignees.all %}
-        <h3>{{ user.username }}</h3>
+        <h3><a href="{% url 'workspace:worker-detail' pk=user.id %}">{{ user.username }}</a></h3>
     {% endfor %}
     <input type="button" value="Back" onclick="history.back()">
 {% endblock %}
