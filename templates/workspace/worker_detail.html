@@ -6,4 +6,16 @@
     <p>{{ worker.first_name }} {{ worker.last_name }}</p>
     <p>Email: {{ worker.email }}</p>
     <p>Position: {{ worker.position }}</p>
+    {% for task in worker.task_set.all %}
+        <h3>
+            <a href="{% url 'workspace:task-detail' pk=task.id %}">{{ task.name }}</a> - {{ task.deadline }}
+            {% if task.is_completed %}
+                This task completed
+            {% else%}
+                This task uncompleted
+            {% endif %}
+        </h3>
+    {% empty %}
+        <h3>The user has no uncompleted tasks</h3>
+    {% endfor %}
 {% endblock %}
