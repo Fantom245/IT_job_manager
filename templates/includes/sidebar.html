@@ -8,4 +8,7 @@
     {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
     {% endif %}
+    <br>
+    <li><a href="{% url 'workspace:task-list' %}">Task List</a></li>
+    <li><a href="{% url 'workspace:worker-list' %}">Worker List</a></li>
 </ul>
