@@ -2,7 +2,10 @@
 
 
 {% block content %}
-    <h1>{{ worker.username }}</h1>
+    <h1>
+        {{ worker.username }}
+        <a href="{% url 'workspace:worker-delete' pk=worker.id %}">Delete</a>
+    </h1>
     <p>{{ worker.first_name }} {{ worker.last_name }}</p>
     <p>Email: {{ worker.email }}</p>
     <p>Position: {{ worker.position }}</p>
