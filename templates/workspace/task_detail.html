@@ -19,4 +19,5 @@
     {% for user in task.assignees.all %}
         <h3>{{ user.username }}</h3>
     {% endfor %}
+    <input type="button" value="Back" onclick="history.back()">
 {% endblock %}
