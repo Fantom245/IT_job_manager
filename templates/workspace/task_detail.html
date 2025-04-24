@@ -17,6 +17,6 @@
     <p>Priority: {{ task.priority }}</p>
     <p>Task type: {{ task.task_type }}</p>
     {% for user in task.assignees.all %}
-        {{ user.username }}
+        <h3>{{ user.username }}</h3>
     {% endfor %}
 {% endblock %}
