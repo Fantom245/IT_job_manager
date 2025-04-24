@@ -9,6 +9,7 @@ from .views import (
     WorkerListView,
     WorkerCreateView,
     WorkerDetailView,
+    WorkerDeleteView,
 )
 from .models import Task
 
@@ -25,4 +26,5 @@ urlpatterns = [
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
+    path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
 ]

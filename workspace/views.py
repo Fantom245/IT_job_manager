@@ -69,3 +69,8 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     template_name = "workspace/worker_detail.html"
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("workspace:worker-list")
