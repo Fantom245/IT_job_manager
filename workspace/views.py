@@ -61,6 +61,10 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "workspace/worker_form.html"
     success_url = reverse_lazy("workspace:worker-list")
 
+    def form_valid(self, form):
+        form.instance.set_password(form.cleaned_data["password"])
+        return super().form_valid(form)
+
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
