@@ -26,6 +26,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "workspace/task_list.html"
     context_object_name = "task_list"
     queryset = Task.objects.all()
+    paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
@@ -73,6 +74,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     template_name = "workspace/worker_list.html"
     context_object_name = "worker_list"
     queryset = Worker.objects.all()
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
