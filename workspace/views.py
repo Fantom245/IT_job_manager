@@ -30,6 +30,10 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         context["search_form"] = TaskSearchForm()
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = TaskSearchForm(initial={"name": name})
         return context
     
     def get_queryset(self):
@@ -73,6 +77,9 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
         context["search_form"] = WorkerSearchForm()
+        username = self.request.GET.get("username", "")
+
+        context["search_form"] = WorkerSearchForm(initial={"username": username})
         return context
     
     def get_queryset(self):
