@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Task, Worker
+from .forms import TaskSearchForm, WorkerSearchForm
 
 
 @login_required
@@ -24,6 +25,20 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "workspace/task_list.html"
     context_object_name = "task_list"
+    queryset = Task.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        context["search_form"] = TaskSearchForm()
+        return context
+    
+    def get_queryset(self):
+        form = TaskSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
@@ -53,6 +68,20 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "workspace/worker_list.html"
     context_object_name = "worker_list"
+    queryset = Worker.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        context["search_form"] = WorkerSearchForm()
+        return context
+    
+    def get_queryset(self):
+        form = WorkerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
