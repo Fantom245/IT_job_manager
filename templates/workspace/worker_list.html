@@ -12,6 +12,10 @@
         </a>
     </h1>
     {% if worker_list %}
+        <form action="" method="get">
+            {{ search_form }}
+            <input type="submit">
+        </form>
         <ul>
             {% for worker in worker_list %}
                 <li>

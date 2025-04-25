@@ -12,6 +12,10 @@
         </a>
     </h1>
     {% if task_list %}
+        <form action="" method="get">
+            {{ search_form }}
+            <input type="submit">
+        </form>
         <ul>
             {% for task in task_list %}
                 <li>
