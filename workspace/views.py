@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Task, Worker
+from .models import Task, Worker, Project, Team
 from .forms import TaskSearchForm, WorkerSearchForm
 
 
@@ -112,3 +112,43 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("workspace:worker-list")
+
+
+class TeamListView(LoginRequiredMixin, generic.ListView):
+    model = Project
+    template_name = "workspace/team_list.html"
+    context_object_name = "team_list"
+    queryset = Team.objects.all()
+    paginate_by = 3
+
+
+class TeamDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Team
+    template_name = "workspace/team_detail.html"
+
+
+class TeamCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Team
+    fields = "__all__"
+    template_name = "workspace/team_form.html"
+    success_url = reverse_lazy("workspace:team-list")
+
+
+class ProjectListView(LoginRequiredMixin, generic.ListView):
+    model = Project
+    template_name = "workspace/project_list.html"
+    context_object_name = "project_list"
+    queryset = Project.objects.all()
+    paginate_by = 3
+
+
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Project
+    template_name = "workspace/project_detail.html"
+
+
+class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Project
+    fields = "__all__"
+    template_name = "workspace/project_form.html"
+    success_url = reverse_lazy("workspace:project-list")
