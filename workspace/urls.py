@@ -10,8 +10,13 @@ from .views import (
     WorkerCreateView,
     WorkerDetailView,
     WorkerDeleteView,
+    TeamListView,
+    TeamDetailView,
+    TeamCreateView,
+    ProjectListView,
+    ProjectDetailView,
+    ProjectCreateView,
 )
-from .models import Task
 
 
 app_name = "workspace"
@@ -27,4 +32,10 @@ urlpatterns = [
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
+    path("projects/", ProjectListView.as_view(), name="project-list"),
+    path("projects/<int:pk>/detail/", ProjectDetailView.as_view(), name="project-detail"),
+    path("projects/create/", ProjectCreateView.as_view(), name="project-create"),
+    path("teams/", TeamListView.as_view(), name="team-list"),
+    path("teams/<int:pk>/detail/", TeamDetailView.as_view(), name="team-detail"),
+    path("teams/create/", TeamCreateView.as_view(), name="team-create"),
 ]
