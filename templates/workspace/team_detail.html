@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>
+        {{ team.name }}
+    </h1>
+    {% for worker in team.workers.all %}
+        <h3><a href="{% url 'workspace:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h3>
+    {% endfor %}
+    <input type="button" value="Back" onclick="history.back()">
+{% endblock %}
