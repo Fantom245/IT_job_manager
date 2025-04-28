@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Team List</title>
+{% endblock %}
+
+{% block content %}
+    <h1>
+        Team List
+        <a href="{% url 'organization:team-create' %}">
+            Create
+        </a>
+    </h1>
+    {% if team_list %}
+        <ul>
+            {% for team in team_list %}
+                <li>
+                    <h2><a href="{% url 'organization:team-detail' pk=team.id %}">{{ team.name }}</a></h2>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no teams at the moment.</p>
+    {% endif %}
+{% endblock %}
