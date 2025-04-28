@@ -10,8 +10,8 @@
     {% endif %}
     <br>
     <li class="list-group-item"><a href="{% url 'workspace:index' %}">Home</a></li>
-    <li class="list-group-item"><a href="{% url 'workspace:task-list' %}">Task List</a></li>
+    <li class="list-group-item"><a href="{% url 'operation:task-list' %}">Task List</a></li>
     <li class="list-group-item"><a href="{% url 'workspace:worker-list' %}">Worker List</a></li>
-    <li class="list-group-item"><a href="{% url 'workspace:team-list' %}">Team List</a></li>
-    <li class="list-group-item"><a href="{% url 'workspace:project-list' %}">Project List</a></li>
+    <li class="list-group-item"><a href="{% url 'organization:team-list' %}">Team List</a></li>
+    <li class="list-group-item"><a href="{% url 'organization:project-list' %}">Project List</a></li>
 </ul>
