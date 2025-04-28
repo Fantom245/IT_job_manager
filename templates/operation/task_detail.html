@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>
+        {{ task.name }}
+        <a href="{% url 'operation:task-update' pk=task.id %}">Update</a>
+        <a href="{% url 'operation:task-delete' pk=task.id %}">Delete</a>
+    </h1>
+    <p>{{ task.description }}</p>
+    <p>Deadline: {{ task.deadline }}</p>
+    {% if task.is_completed %}
+        <p>Task is completed</p>
+    {% else %}
+        <p>Task not completed</p>
+    {% endif %}
+    <p>Priority: {{ task.get_priority_display }}</p>
+    <p>Task type: {{ task.task_type }}</p>
+    {% for user in task.assignees.all %}
+        <h3><a href="{% url 'people:worker-detail' pk=user.id %}">{{ user.username }}</a></h3>
+    {% endfor %}
+    <input type="button" value="Back" onclick="history.back()">
+{% endblock %}
