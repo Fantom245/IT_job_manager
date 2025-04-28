@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "workspace",
+    "people",
+    "organization",
+    "operation",
     "crispy_forms",
 ]
 
@@ -125,6 +127,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'workspace.Worker'
+AUTH_USER_MODEL = 'people.Worker'
 
 CRISPY_TEMPLATE_PACK = "uni_form"
