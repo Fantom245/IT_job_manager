@@ -13,7 +13,7 @@ class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["name",]
+        ordering = ["username",]
         indexes = [
             models.Index(fields=["username"])
         ]
