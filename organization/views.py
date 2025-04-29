@@ -27,6 +27,18 @@ class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+
+class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Team
+    fields = ("name", "workers",)
+    template_name = "organization/team_update.html"
+    success_url = reverse_lazy("organization:team-list")
+    
+
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Team
+    success_url = reverse_lazy("organization:team-list")
 
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
@@ -47,10 +59,6 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ("name", "description", "teams", "tasks",)
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
