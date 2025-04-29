@@ -20,9 +20,13 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     model = Team
-    fields = "__all__"
+    fields = ("name", "workers",)
     template_name = "organization/team_form.html"
     success_url = reverse_lazy("organization:team-list")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
@@ -40,14 +44,19 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
-    fields = "__all__"
+    fields = ("name", "description", "teams", "tasks",)
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
-    fields = "__all__"
+    fields = ("name", "description", "teams", "tasks",)
+    template_name = "organization/project_update.html"
     success_url = reverse_lazy("organization:project-list")
 
 

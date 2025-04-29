@@ -4,12 +4,14 @@
 {% block content %}
     <h1>
         {{ project.name }}
-        <a href="{% url 'organization:project-update' pk=project.id %}">
-            Update
-        </a>
-        <a href="{% url 'organization:project-delete' pk=project.id %}">
-            Delete
-        </a>
+        {% if request.user == task.author or request.user.is_superuser %}
+            <a href="{% url 'organization:project-update' pk=project.id %}">
+                Update
+            </a>
+            <a href="{% url 'organization:project-delete' pk=project.id %}">
+                Delete
+            </a>
+        {% endif %}
     </h1>
     {% for team in project.teams.all %}
         <h3><a href="{% url 'organization:team-detail' pk=team.id %}">{{ team.name }}</a></h3>
