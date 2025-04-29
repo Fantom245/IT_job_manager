@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import Task
 from .forms import TaskSearchForm
@@ -42,10 +42,15 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "operation/task_form.html"
     success_url = reverse_lazy("operation:task-list")
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    fields = "__all__"
+    fields = ("name", "description", "deadline", "priority", "task_type", "assignees", "is_completed")
+    template_name = "operation/task_update.html"
     success_url = reverse_lazy("operation:task-list")
 
 

@@ -24,6 +24,7 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=9, choices=Priority.choices, default=Priority.NORMAL)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
+    author = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="authored_task")
     assignees = models.ManyToManyField(Worker)
 
     class Meta:

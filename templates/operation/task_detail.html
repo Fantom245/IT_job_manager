@@ -4,8 +4,10 @@
 {% block content %}
     <h1>
         {{ task.name }}
-        <a href="{% url 'operation:task-update' pk=task.id %}">Update</a>
-        <a href="{% url 'operation:task-delete' pk=task.id %}">Delete</a>
+        {% if request.user == task.author or request.user.is_superuser %}
+            <a href="{% url 'operation:task-update' pk=task.id %}">Update</a>
+            <a href="{% url 'operation:task-delete' pk=task.id %}">Delete</a>
+        {% endif %}
     </h1>
     <p>{{ task.description }}</p>
     <p>Deadline: {{ task.deadline }}</p>
