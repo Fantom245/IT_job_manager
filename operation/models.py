@@ -27,7 +27,10 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker)
 
     class Meta:
-        ordering = ["priority",]
+        ordering = ["priority", "name",]
+        indexes = [
+            models.Index(fields=["name"])
+        ]
 
     def __str__(self):
         return self.name

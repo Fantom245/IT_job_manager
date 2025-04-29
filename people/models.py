@@ -12,5 +12,11 @@ class Position(models.Model):
 class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ["name",]
+        indexes = [
+            models.Index(fields=["username"])
+        ]
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
