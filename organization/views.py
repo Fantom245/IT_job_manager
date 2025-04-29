@@ -44,3 +44,13 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
 
+
+class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Project
+    fields = "__all__"
+    success_url = reverse_lazy("organization:project-list")
+
+
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    success_url = reverse_lazy("organization:project-list")
