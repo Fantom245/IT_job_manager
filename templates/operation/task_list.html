@@ -10,6 +10,7 @@
         <a href="{% url 'operation:task-create' %}">
             Create
         </a>
+        Number of tasks: {{ task_count }}
     </h1>
     {% if task_list %}
         <form action="" method="get">

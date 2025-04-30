@@ -20,6 +20,8 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         name = self.request.GET.get("name", "")
 
         context["search_form"] = TaskSearchForm(initial={"name": name})
+        context["task_count"] = self.get_queryset().count()
+        
         return context
     
     def get_queryset(self):
