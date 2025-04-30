@@ -47,7 +47,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
             )
 
 
-class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(generic.CreateView):
     model = Worker
     fields = ("username", "password", "first_name", "last_name", "email", "position")
     template_name = "people/worker_form.html"
