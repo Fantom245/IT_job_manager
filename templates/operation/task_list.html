@@ -5,13 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        Task List
-        <a href="{% url 'operation:task-create' %}">
-            Create
-        </a>
-        Number of tasks: {{ task_count }}
-    </h1>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>
+                Task List
+            </h1>
+            <a href="{% url 'operation:task-create' %}" class="btn btn-primary">
+                Create
+            </a>
+        </div>
+    <h2>Number of tasks: {{ task_count }}</h2>
     {% if task_list %}
         <form action="" method="get">
             {{ search_form }}

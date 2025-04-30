@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-        Team List
-        <a href="{% url 'organization:team-create' %}">
-            Create
-        </a>
-    </h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Team List</h1>
+            <a href="{% url 'organization:team-create' %}" class="btn btn-primary">
+                Create
+            </a>
+    </div>
     {% if team_list %}
         <ul>
             {% for team in team_list %}
