@@ -6,9 +6,7 @@
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <div>
-            <input type="submit" value="Submit" class="btn btn-primary">
-            <input type="button" value="Back" class="btn btn-secondary" onclick="history.back()">
-        </div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="button" value="Back" class="btn btn-secondary" onclick="history.back()">
     </form>
 {% endblock %}

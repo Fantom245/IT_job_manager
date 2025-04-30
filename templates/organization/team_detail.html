@@ -12,5 +12,5 @@
     {% for worker in team.workers.all %}
         <h3><a href="{% url 'people:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h3>
     {% endfor %}
-    <input type="button" value="Back" onclick="history.back()">
+    <input type="button" value="Back" class="btn btn-secondary" onclick="history.back()">
 {% endblock %}
