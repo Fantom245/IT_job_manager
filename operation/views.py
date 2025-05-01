@@ -10,7 +10,6 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "operation/task_list.html"
     context_object_name = "task_list"
-    queryset = Task.objects.all()
     paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -25,12 +24,14 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
+        queryset = Task.objects.all()
         form = TaskSearchForm(self.request.GET)
 
         if form.is_valid():
-            return self.queryset.filter(
+            return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+        return queryset
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):

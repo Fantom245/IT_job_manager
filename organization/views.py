@@ -10,7 +10,6 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Project
     template_name = "organization/team_list.html"
     context_object_name = "team_list"
-    queryset = Team.objects.all()
     paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -24,12 +23,14 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
+        queryset = Team.objects.all()
         form = TeamSearchForm(self.request.GET)
 
         if form.is_valid():
-            return self.queryset.filter(
+            return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+        return queryset
 
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
@@ -64,7 +65,6 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     template_name = "organization/project_list.html"
     context_object_name = "project_list"
-    queryset = Project.objects.all()
     paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -78,12 +78,14 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
+        queryset = Project.objects.all()
         form = ProjectSearchForm(self.request.GET)
 
         if form.is_valid():
-            return self.queryset.filter(
+            return queryset.filter(
                 name__icontains=form.cleaned_data["name"]
             )
+        return queryset
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):

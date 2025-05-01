@@ -27,7 +27,6 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "people/worker_list.html"
     context_object_name = "worker_list"
-    queryset = Worker.objects.all()
     paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -39,12 +38,14 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         return context
     
     def get_queryset(self):
+        queryset = Worker.objects.all()
         form = WorkerSearchForm(self.request.GET)
 
         if form.is_valid():
-            return self.queryset.filter(
+            return queryset.filter(
                 username__icontains=form.cleaned_data["username"]
             )
+        return queryset
 
 
 class WorkerCreateView(generic.CreateView):
