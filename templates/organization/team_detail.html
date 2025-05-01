@@ -2,13 +2,15 @@
 
 
 {% block content %}
-    <h1>
-        {{ team.name }}
-        {% if request.user == task.author or request.user.is_superuser %}
-            <a href="{% url 'organization:team-update' pk=team.id %}">Update</a>
-            <a href="{% url 'organization:team-delete' pk=team.id %}">Delete</a>
-        {% endif %}
-    </h1>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>{{ team.name }}</h1>
+            {% if request.user == task.author or request.user.is_superuser %}
+                <div class="d-flex gap-2 ms-auto">
+                    <a class="btn btn-primary" href="{% url 'organization:team-update' pk=team.id %}">Update</a>
+                    <a class="btn btn-primary" href="{% url 'organization:team-delete' pk=team.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
     {% for worker in team.workers.all %}
         <h3><a href="{% url 'people:worker-detail' pk=worker.id %}">{{ worker.username }}</a></h3>
     {% endfor %}

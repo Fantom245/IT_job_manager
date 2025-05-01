@@ -2,10 +2,12 @@
 
 
 {% block content %}
-    <h1>
-        {{ worker.username }}
-        <a href="{% url 'people:worker-delete' pk=worker.id %}">Delete</a>
-    </h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>{{ worker.username }}</h1>
+        <div class="d-flex gap-2 ms-auto">
+            <a class="btn btn-primary" href="{% url 'people:worker-delete' pk=worker.id %}">Delete</a>
+        </div>
+    </div>
     <p>{{ worker.first_name }} {{ worker.last_name }}</p>
     <p>Email: {{ worker.email }}</p>
     <p>Position: {{ worker.position }}</p>

@@ -2,13 +2,15 @@
 
 
 {% block content %}
-    <h1>
-        {{ task.name }}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>{{ task.name }}</h1>
         {% if request.user == task.author or request.user.is_superuser %}
-            <a href="{% url 'operation:task-update' pk=task.id %}">Update</a>
-            <a href="{% url 'operation:task-delete' pk=task.id %}">Delete</a>
+            <div class="d-flex gap-2 ms-auto">
+                <a class="btn btn-primary" href="{% url 'operation:task-update' pk=task.id %}">Update</a>
+                <a class="btn btn-primary" href="{% url 'operation:task-delete' pk=task.id %}">Delete</a>
+            </div>
         {% endif %}
-    </h1>
+    </div>
     <p>{{ task.description }}</p>
     <p>Deadline: {{ task.deadline }}</p>
     {% if task.is_completed %}
