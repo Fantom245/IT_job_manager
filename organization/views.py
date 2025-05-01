@@ -2,6 +2,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
+from .forms import ProjectSearchForm, TeamSearchForm
 from .models import Project, Team
 
 
@@ -11,6 +12,24 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
     queryset = Team.objects.all()
     paginate_by = 3
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        context["search_form"] = TeamSearchForm()
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = TeamSearchForm(initial={"name": name})
+
+        return context
+    
+    def get_queryset(self):
+        form = TeamSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
 
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
@@ -47,6 +66,24 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "project_list"
     queryset = Project.objects.all()
     paginate_by = 3
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        context["search_form"] = ProjectSearchForm()
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = ProjectSearchForm(initial={"name": name})
+
+        return context
+    
+    def get_queryset(self):
+        form = ProjectSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):

@@ -14,6 +14,10 @@
         </a>
     </div>
     {% if project_list %}
+        <form action="" method="get" class="form-inline">
+            {{ search_form }}
+            <input class="btn btn-secondary" type="submit" value="🔍">
+        </form>
         <ul>
             {% for project in project_list %}
                 <li>
