@@ -9,9 +9,9 @@
         Worker List
     </h1>
     {% if worker_list %}
-        <form action="" method="get">
+        <form action="" method="get" class="form-inline">
             {{ search_form }}
-            <input type="submit">
+            <input class="btn btn-secondary" type="submit" value="🔍">
         </form>
         <ul>
             {% for worker in worker_list %}
