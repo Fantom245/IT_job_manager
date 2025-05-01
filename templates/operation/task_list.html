@@ -15,9 +15,9 @@
         </div>
     <h2>Number of tasks: {{ task_count }}</h2>
     {% if task_list %}
-        <form action="" method="get">
+        <form action="" method="get" class="form-inline">
             {{ search_form }}
-            <input type="submit">
+            <input class="btn btn-secondary" type="submit" value="🔍">
         </form>
         <ul>
             {% for task in task_list %}
