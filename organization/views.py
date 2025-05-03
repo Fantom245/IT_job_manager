@@ -1,8 +1,8 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 
-from .forms import ProjectSearchForm, TeamSearchForm
+from .forms import ProjectSearchForm, TeamSearchForm, ProjectTeamForm
 from .models import Project, Team
 
 
@@ -98,6 +98,15 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ("name", "description", "teams", "tasks",)
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
+
+
+class TeamAddProjectView(LoginRequiredMixin, generic.UpdateView):
+    model = Project
+    form_class = ProjectTeamForm
+    template_name = "organization/project_add_team.html"
+    
+    def get_success_url(self):
+        return reverse("organization:project-detail", args=[self.object.pk])
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):

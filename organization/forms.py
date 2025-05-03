@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Project
+
 
 class TeamSearchForm(forms.Form):
     name = forms.CharField(
@@ -21,3 +23,9 @@ class ProjectSearchForm(forms.Form):
             attrs={"placeholder": "Search by project name"}
         )
     )
+
+
+class ProjectTeamForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['teams']

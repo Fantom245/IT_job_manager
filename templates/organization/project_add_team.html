@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>Add team in project</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Save" class="btn btn-primary">
+        <input type="button" value="Back" class="btn btn-secondary" onclick="history.back()">
+    </form>
+{% endblock %}
