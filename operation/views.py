@@ -1,6 +1,9 @@
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from organization.models import Project
 
 from .models import Task
 from .forms import TaskSearchForm
@@ -48,6 +51,23 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+
+class TaskCreateProjectView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    fields = ("name", "description", "deadline", "priority", "task_type", "assignees")
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project = get_object_or_404(Project, pk=self.kwargs["pk"])
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        form.instance.project = self.project
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse("organization:project-detail", kwargs={"pk": self.project.pk})
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
