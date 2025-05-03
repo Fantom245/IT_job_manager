@@ -6,22 +6,23 @@
             <h1>{{ project.name }}</h1>
             {% if request.user == task.author or request.user.is_superuser %}
                 <div class="d-flex gap-2 ms-auto">
-                    <a class="btn btn-primary" href="{% url 'organization:project-delete' pk=project.id %}">
-                        Delete
-                    </a>
                     <a class="btn btn-primary" href="{% url 'organization:task-create-for-project' pk=project.id %}">
                         Add task
                     </a>
                     <a class="btn btn-primary" href="{% url 'organization:project-add-team' pk=project.id %}">
                         Add team
                     </a>
+                    <a class="btn btn-primary" href="{% url 'organization:project-delete' pk=project.id %}">
+                        Delete
+                    </a>
                 </div>
             {% endif %}
         </div>
+    <p>{{ project.description }}</p>
     {% for team in project.teams.all %}
         <h3><a href="{% url 'organization:team-detail' pk=team.id %}">{{ team.name }}</a></h3>
     {% endfor %}
-    <p>{{ project.description }}</p>
+    <h2>Tasks</h2>
     {% for task in project.tasks.all %}
         <p><a href="{% url 'operation:task-detail' pk=task.id %}">{{ task.name }}</a></p>
     {% endfor %}
