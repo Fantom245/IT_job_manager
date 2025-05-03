@@ -23,7 +23,6 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=500)
     teams = models.ManyToManyField(Team)
-    tasks = models.ManyToManyField(Task)
     author = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="authored_project")
 
     class Meta:
