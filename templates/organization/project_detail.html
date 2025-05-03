@@ -12,6 +12,9 @@
                     <a class="btn btn-primary" href="{% url 'organization:project-delete' pk=project.id %}">
                         Delete
                     </a>
+                    <a class="btn btn-primary" href="{% url 'organization:task-create-for-project' pk=project.id %}">
+                        Add task
+                    </a>
                 </div>
             {% endif %}
         </div>
