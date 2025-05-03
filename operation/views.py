@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from organization.models import Project
 
 from .models import Task
-from .forms import TaskSearchForm
+from .forms import TaskForm, TaskSearchForm
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
@@ -44,30 +44,15 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-    fields = ("name", "description", "deadline", "priority", "task_type", "assignees")
+    fields = ["name", "description", "deadline", "priority", "task_type", "assignees"]
     template_name = "operation/task_form.html"
     success_url = reverse_lazy("operation:task-list")
 
+
     def form_valid(self, form):
+        form.instance.project = Project.objects.get(pk=self.kwargs['pk'])
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
-
-class TaskCreateProjectView(LoginRequiredMixin, generic.CreateView):
-    model = Task
-    fields = ("name", "description", "deadline", "priority", "task_type", "assignees")
-
-    def dispatch(self, request, *args, **kwargs):
-        self.project = get_object_or_404(Project, pk=self.kwargs["pk"])
-        return super().dispatch(request, *args, **kwargs)
-    
-    def form_valid(self, form):
-        form.instance.project = self.project
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-    
-    def get_success_url(self):
-        return reverse("organization:project-detail", kwargs={"pk": self.project.pk})
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):

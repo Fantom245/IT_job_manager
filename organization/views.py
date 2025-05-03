@@ -1,6 +1,10 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
+
+from operation.forms import TaskForm
+from operation.models import Task
 
 from .forms import ProjectSearchForm, TeamSearchForm, ProjectTeamForm
 from .models import Project, Team
@@ -98,6 +102,29 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ("name", "description", "teams", "tasks",)
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
+
+
+class TaskCreateProjectView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'operation/task_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.project = get_object_or_404(Project, pk=self.kwargs["pk"])
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['project'] = self.project
+        return kwargs
+    
+    def form_valid(self, form):
+        form.instance.project = self.project
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse("organization:project-detail", kwargs={"pk": self.project.pk})
 
 
 class TeamAddProjectView(LoginRequiredMixin, generic.UpdateView):
