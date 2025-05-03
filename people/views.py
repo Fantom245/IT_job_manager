@@ -8,16 +8,25 @@ from .models import Worker
 from .forms import WorkerSearchForm
 
 from operation.models import Task
+from organization.models import Project, Team
 
 
 @login_required
 def index(request):
     tasks = Task.objects.all()
     workers = Worker.objects.all()
+    number_tasks = Task.objects.all().count()
+    number_workers = Worker.objects.all().count()
+    number_projects = Project.objects.all().count()
+    number_teams = Team.objects.all().count()
 
     context = {
         "tasks": tasks,
         "workers": workers,
+        "number_projects": number_projects,
+        "number_teams": number_teams,
+        "number_workers": number_workers,
+        "number_tasks": number_tasks,
     }
 
     return render(request, "people/index.html", context=context)
