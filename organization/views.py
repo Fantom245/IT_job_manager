@@ -99,9 +99,13 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
-    fields = ("name", "description", "teams", "tasks",)
+    fields = ("name", "description", "teams",)
     template_name = "organization/project_form.html"
     success_url = reverse_lazy("organization:project-list")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class TaskCreateProjectView(LoginRequiredMixin, generic.CreateView):
