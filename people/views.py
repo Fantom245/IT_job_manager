@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,7 +10,6 @@ from operation.models import Task
 from organization.models import Project, Team
 
 
-@login_required
 def index(request):
     tasks = Task.objects.all()
     workers = Worker.objects.all()
