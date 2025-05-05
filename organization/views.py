@@ -14,7 +14,7 @@ class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Project
     template_name = "organization/team_list.html"
     context_object_name = "team_list"
-    paginate_by = 3
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TeamListView, self).get_context_data(**kwargs)
@@ -69,7 +69,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     template_name = "organization/project_list.html"
     context_object_name = "project_list"
-    paginate_by = 3
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProjectListView, self).get_context_data(**kwargs)
