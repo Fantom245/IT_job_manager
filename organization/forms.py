@@ -24,7 +24,11 @@ class ProjectSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by project name"}
+            attrs={
+                "class": "form-control rounded-start",
+                "placeholder": "Search by project name",
+                "style": "height: 38px;",
+            }
         )
     )
 
