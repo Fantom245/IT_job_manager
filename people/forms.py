@@ -7,6 +7,10 @@ class WorkerSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by workers name"}
+            attrs={
+                "class": "form-control rounded-start",
+                "placeholder": "Search by workers name",
+                "style": "height: 38px;",
+            }
         )
     )
