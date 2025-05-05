@@ -9,7 +9,11 @@ class TeamSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by team name"}
+            attrs={
+                "class": "form-control rounded-start",
+                "placeholder": "Search by team name",
+                "style": "height: 38px;"
+            }
         )
     )
 
