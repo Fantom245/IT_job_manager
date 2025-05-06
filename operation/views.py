@@ -59,9 +59,9 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = ("name", "description", "deadline", "priority", "task_type", "assignees", "is_completed")
     template_name = "operation/task_update.html"
-    success_url = reverse_lazy("operation:task-list")
+    success_url = reverse_lazy("organization:project-list")
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
-    success_url = reverse_lazy("operation:task-list")
+    success_url = reverse_lazy("organization:project-list")
