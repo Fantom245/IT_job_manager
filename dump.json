@@ -1,0 +1,230 @@
+[
+{
+    "model": "people.position",
+    "pk": 1,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "people.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$te9pDbqs7FpiIkVIsQlCTN$Uee05JR14jl6VNzdea7K4PZl/irn+TUSTgxNHeoRdZQ=",
+        "last_login": "2025-05-09T20:20:09.062Z",
+        "is_superuser": true,
+        "username": "admin.user",
+        "first_name": "",
+        "last_name": "",
+        "email": "gyrkalomas@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-28T12:59:48.076Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "people.worker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$WATxHXcAkIT0E6S6qlvtc8$xwTRY1qtl6w0F5Vkrx3tT7oSIzFggV7/mWI/GLbcops=",
+        "last_login": "2025-05-01T16:26:33.555Z",
+        "is_superuser": false,
+        "username": "Galushka",
+        "first_name": "Danil",
+        "last_name": "Glushko",
+        "email": "DanilGlushko07@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-29T08:54:23.445Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "people.worker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$XwIIEkpqVBFlhFWCZMEvG6$GIGdSvQ+gafQd8+QfphsOmM27OYCea+HhZ6NYLsEu4Q=",
+        "last_login": "2025-05-01T11:41:28.684Z",
+        "is_superuser": false,
+        "username": "KFCufc",
+        "first_name": "Vitalik",
+        "last_name": "Bogdanov",
+        "email": "fheuwhfuf@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-29T09:02:48.179Z",
+        "position": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "organization.team",
+    "pk": 1,
+    "fields": {
+        "name": "Team 1",
+        "author": 1,
+        "workers": [
+            1
+        ]
+    }
+},
+{
+    "model": "organization.team",
+    "pk": 2,
+    "fields": {
+        "name": "Team 2",
+        "author": 1,
+        "workers": [
+            3,
+            1
+        ]
+    }
+},
+{
+    "model": "organization.project",
+    "pk": 1,
+    "fields": {
+        "name": "Project 1",
+        "description": "For test",
+        "author": 1,
+        "teams": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "organization.project",
+    "pk": 2,
+    "fields": {
+        "name": "Project test dostup",
+        "description": "Dostup",
+        "author": 2,
+        "teams": [
+            1
+        ]
+    }
+},
+{
+    "model": "organization.project",
+    "pk": 4,
+    "fields": {
+        "name": "Super project",
+        "description": "Project for test",
+        "author": 1,
+        "teams": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "operation.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "operation.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "operation.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Refactoring"
+    }
+},
+{
+    "model": "operation.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "New feature"
+    }
+},
+{
+    "model": "operation.tasktype",
+    "pk": 5,
+    "fields": {
+        "name": "Breaking change"
+    }
+},
+{
+    "model": "operation.task",
+    "pk": 1,
+    "fields": {
+        "name": "Test task",
+        "description": "For Test",
+        "deadline": "2025-04-28T13:05:48Z",
+        "is_completed": false,
+        "priority": "3_Normal",
+        "task_type": 1,
+        "author": 2,
+        "project": 1,
+        "assignees": [
+            1
+        ]
+    }
+},
+{
+    "model": "operation.task",
+    "pk": 3,
+    "fields": {
+        "name": "Fix bug",
+        "description": "Fix bug on the website",
+        "deadline": "2025-04-29T09:00:29Z",
+        "is_completed": false,
+        "priority": "2_High",
+        "task_type": 2,
+        "author": 2,
+        "project": 1,
+        "assignees": [
+            2
+        ]
+    }
+},
+{
+    "model": "operation.task",
+    "pk": 6,
+    "fields": {
+        "name": "Task for Galuska",
+        "description": "Test task",
+        "deadline": "2025-04-22T18:30:00Z",
+        "is_completed": false,
+        "priority": "1_Urgent",
+        "task_type": 4,
+        "author": 2,
+        "project": 1,
+        "assignees": [
+            2
+        ]
+    }
+},
+{
+    "model": "operation.task",
+    "pk": 16,
+    "fields": {
+        "name": "Test task",
+        "description": "Test",
+        "deadline": "2025-04-22T18:30:00Z",
+        "is_completed": false,
+        "priority": "2_High",
+        "task_type": 3,
+        "author": 1,
+        "project": 2,
+        "assignees": [
+            3
+        ]
+    }
+}
+]
