@@ -1,10 +1,9 @@
 ![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
 
-# Name of the project
-> Additional information or tagline
+# IT_job_manager
+> Best tasks manager
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+The project was created to simplify the workflow in companies. Create projects, add teams to them and assign tasks to employees.
 
 ## Installing / Getting started
 
