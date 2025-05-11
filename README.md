@@ -1,134 +1,126 @@
 ![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
 
-# Name of the project
-> Additional information or tagline
+# IT_job_manager
+> Best tasks manager
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+The project was created to simplify the workflow in companies. Create projects, add teams to them and assign tasks to employees.
 
-## Installing / Getting started
+## Installation / Getting Started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+Follow these steps to quickly get the project up and running and start working with the blog platform:
 
-```shell
-packagemanager install awesome-project
-awesome-project start
-awesome-project "Do something!"  # prints "Nah."
-```
+1. Clone the project repository:
 
-Here you should say what actually happens when you execute the code above.
+    ```bash
+    git clone https://github.com/Fantom245/IT_job_manager.git
+    ```
 
-### Initial Configuration
+2. Navigate to the project directory:
 
-Some projects require initial configuration (e.g. access tokens or keys, `npm i`).
-This is the section where you would document those requirements.
+    ```bash
+    cd IT_job_manager
+    ```
 
-## Developing
+3. Install the dependencies:
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-```shell
-git clone https://github.com/your/awesome-project.git
-cd awesome-project/
-packagemanager install
-```
+4. Apply the database migrations:
 
-And state what happens step-by-step.
+    ```bash
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py migrate
+    ```
 
-### Building
+5. Run the server:
 
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here:
+    ```bash
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py runserver
+    ```
 
-```shell
-./configure
-make
-make install
-```
+After that, you can access the application at: `http://127.0.0.1:8000/`.
 
-Here again you should state what actually happens when the code above gets
-executed.
+If you need to go to the admin panel, use the command:
+
+    ```bash
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py loaddata dump.json
+    ```
+And use to log in
+> username: admin.user
+> password: asas24800
+
+## Building
+
+If your project requires additional steps to build or configure the environment after code changes, you can use the provided `build.sh` script.
+
+1. Make the script executable (if it's not already):
+
+    ```bash
+    chmod +x build.sh
+    ```
+
+2. Run the script:
+
+    ```bash
+    ./build.sh
+    ```
+
+### What happens here:
+- `chmod +x build.sh` makes the script executable if it wasn't already.
+- `./build.sh` runs the script, which automatically executes the necessary commands to set up the environment, apply migrations, collect static files, etc.
+
+This script may include steps like applying migrations, installing dependencies, setting up environment variables, or any other project-specific configuration tasks.
 
 ### Deploying / Publishing
 
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
+To deploy this project to a production server, follow these steps:
 
-```shell
-packagemanager deploy awesome-project -s server.com -u username -p password
-```
+1. Set up the production environment and install the necessary dependencies on the server:
 
-And again you'd need to tell what the previous code actually does.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. Set the Django settings to production:
+
+    ```bash
+    export DJANGO_SETTINGS_MODULE=it_job_manager.settings.production
+    ```
+
+3. Apply database migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+
+4. Collect static files for production:
+
+    ```bash
+    python manage.py collectstatic --noinput
+    ```
+
+5. Restart your web server (for example, Gunicorn or uWSGI):
+
+    ```bash
+    sudo systemctl restart gunicorn
+    ```
+
+6. Make sure everything is up and running by visiting your project URL.
 
 ## Features
 
-What's all the bells and whistles this project can perform?
-* What's the main functionality
-* You can also do another thing
-* If you get really randy, you can even do this
+This project offers the following features:
 
-## Configuration
+* User registration and authentication
+* Creating, editing, and deleting blog posts
+* Commenting on posts
+* Categorizing posts into different categories
+* Admin interface for managing posts and users
+* Search functionality to find posts by title or content
 
-Here you should write what are all of the configurations a user can enter when
-using the project.
+If you want to extend the functionality, you can also:
 
-#### Argument 1
-Type: `String`  
-Default: `'default value'`
-
-State what an argument does and how you can use it. If needed, you can provide
-an example below.
-
-Example:
-```bash
-awesome-project "Some other value"  # Prints "You're nailing this readme!"
-```
-
-#### Argument 2
-Type: `Number|Boolean`  
-Default: 100
-
-Copy-paste as many of these as you need.
-
-## Contributing
-
-When you publish something open source, one of the greatest motivations is that
-anyone can just jump in and start contributing to your project.
-
-These paragraphs are meant to welcome those kind souls to feel that they are
-needed. You should state something like:
-
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
-
-If there's anything else the developer needs to know (e.g. the code style
-guide), you should link it here. If there's a lot of things to take into
-consideration, it is common to separate this section to its own file called
-`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
-
-## Links
-
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
-- Project homepage: https://your.github.com/awesome-project/
-- Repository: https://github.com/your/awesome-project/
-- Issue tracker: https://github.com/your/awesome-project/issues
-  - In case of sensitive bugs like security vulnerabilities, please contact
-    my@email.com directly instead of using issue tracker. We value your effort
-    to improve the security and privacy of this project!
-- Related projects:
-  - Your other project: https://github.com/your/other-project/
-  - Someone else's project: https://github.com/someones/awesome-project/
-
-
-## Licensing
-
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
-
-"The code in this project is licensed under MIT license."
+* Add user profiles with the ability to upload avatars
+* Implement a tagging system for posts
+* Add support for rich text formatting in posts
