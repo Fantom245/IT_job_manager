@@ -124,3 +124,7 @@ If you want to extend the functionality, you can also:
 * Add user profiles with the ability to upload avatars
 * Implement a tagging system for posts
 * Add support for rich text formatting in posts
+
+
+## Link to deployed project
+https://it-job-manager.onrender.com/
