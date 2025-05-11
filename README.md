@@ -5,18 +5,49 @@
 
 The project was created to simplify the workflow in companies. Create projects, add teams to them and assign tasks to employees.
 
-## Installing / Getting started
+## Installation / Getting Started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+Follow these steps to quickly get the project up and running and start working with the blog platform:
 
-```shell
-packagemanager install awesome-project
-awesome-project start
-awesome-project "Do something!"  # prints "Nah."
-```
+1. Clone the project repository:
 
-Here you should say what actually happens when you execute the code above.
+    ```bash
+    git clone https://github.com/yourusername/project-name.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd project-name
+    ```
+
+3. Install the dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Apply the database migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+
+5. Run the server:
+
+    ```bash
+    python manage.py runserver
+    ```
+
+After that, you can access the application at: `http://127.0.0.1:8000/`.
+
+You are now ready to use the basic features of the platform: user registration, creating and editing posts, and commenting.
+
+If you need to create a superuser for the admin panel:
+
+```bash
+python manage.py createsuperuser
+
 
 ### Initial Configuration
 
