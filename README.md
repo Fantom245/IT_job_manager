@@ -12,13 +12,13 @@ Follow these steps to quickly get the project up and running and start working w
 1. Clone the project repository:
 
     ```bash
-    git clone https://github.com/yourusername/project-name.git
+    git clone https://github.com/Fantom245/IT_job_manager.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd project-name
+    cd IT_job_manager
     ```
 
 3. Install the dependencies:
@@ -30,24 +30,25 @@ Follow these steps to quickly get the project up and running and start working w
 4. Apply the database migrations:
 
     ```bash
-    python manage.py migrate
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py migrate
     ```
 
 5. Run the server:
 
     ```bash
-    python manage.py runserver
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py runserver
     ```
 
 After that, you can access the application at: `http://127.0.0.1:8000/`.
 
-You are now ready to use the basic features of the platform: user registration, creating and editing posts, and commenting.
+If you need to go to the admin panel, use the command:
 
-If you need to create a superuser for the admin panel:
-
-```bash
-python manage.py createsuperuser
-
+    ```bash
+    DJANGO_SETTINGS_MODULE=it_job_manager.settings.dev python manage.py loaddata dump.json
+    ```
+And use to log in
+> username: admin.user
+> password: asas24800
 
 ### Initial Configuration
 
