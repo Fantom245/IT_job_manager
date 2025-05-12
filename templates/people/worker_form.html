@@ -28,7 +28,7 @@
                 {{ form|crispy }}
                 <div>
                     <input type="submit" value="Submit" class="btn btn-primary">
-                    <input type="button" value="Back" class="btn btn-secondary" onclick="history.back()">
+                    <a href="{% url 'people:index' %}" type="button" class="btn btn-secondary">Back</a>
                 </div>
             </form>
           </div>
